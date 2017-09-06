@@ -1,12 +1,11 @@
 <html>
 	<head>
-		<! |safe flag allows HTML to be rendered >
 		{{ map_file |safe}}
 	</head>
 	<body onload='initialize()'>
 		<div>
-			<h1>AYO BITCH, YOU ASK FOR THIS?</h2>
-			<h2>YEAH GOOD KEEP IT THAT WAY YA FREAKIN JABRONI</h2>
+			<h1>This the map page yo.</h2>
+			<h2>{{city_name}}</h2>
 		</div>
 		<div id="map_canvas" style="width: 100%; height: 100%;"></div>
 	</body>

@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.template import loader
+from django.http import HttpResponse
 import urllib
 import sys
 import os
@@ -15,7 +16,7 @@ def index(request):
 
 def city(request, city_name):
     template = loader.get_template('map/map.html')
-    map_file = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.html"))
+    map_file = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.html")).read()
     
     context = {
         'city_name': city_name,
