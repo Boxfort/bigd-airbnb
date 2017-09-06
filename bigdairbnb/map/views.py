@@ -14,9 +14,14 @@ import plotter
 def index(request):
     return HttpResponse("<h1>Map index page</h1>")
 
+#TODO: Check if filename of city exists, if not then call the plotter to make the file.
 def city(request, city_name):
     template = loader.get_template('map/map.html')
-    map_file = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.html")).read()
+    filepath = plotter.plot_heatmap(city_name, "price")
+    if filepath == None:
+        return HttpResponse("Something went wrong!")
+
+    map_file = urllib.urlopen(filepath).read()
     
     context = {
         'city_name': city_name,
