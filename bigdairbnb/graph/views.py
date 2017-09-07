@@ -21,7 +21,10 @@ def graph(request, city1, city2, field):
     template = loader.get_template('graph/graph.html')
     graph_html = grapher.graph(city1, city2, field)
     context = {
-        "graph_html" : graph_html
+        "graph_html" : graph_html,
+        "city1" : city1,
+        "city2" : city2,
+        "field" : field,
         }
     return HttpResponse(template.render(context, request))
 

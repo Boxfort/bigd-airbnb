@@ -15,10 +15,10 @@
 		<link rel="stylesheet" href="{% static 'css/map.css' %}">
 	</head>
 	<body onload='initialize()'>
-		{% include 'map/navbar.html' %}
+		{% include 'graph/navbar.html' %}
 		<div class="container main-contain">
 			<h1>Graph</h1>
-			<h3></h3>
+			<h3>{% if field != None %}{{city1}} - {{city2}} - Average {{field}}{% endif %}</h3>
 			<hr/>
 			<div class="row">
 				<div class="col-sm-8">
