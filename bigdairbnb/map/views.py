@@ -18,13 +18,17 @@ def index(request):
 def city(request, city_name):
     template = loader.get_template('map/map.html')
     filepath = plotter.plot_heatmap(city_name, "price")
+    error = None
+    map_file = ""
     if filepath == None:
-        return HttpResponse("Something went wrong!")
+        city_name = "Something went wrong!"
+        error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+    else:
+        map_file = urllib.urlopen(filepath).read()
 
-    map_file = urllib.urlopen(filepath).read()
-    
     context = {
         'city_name': city_name,
         'map_file': map_file,
+        'error': error
     }
     return HttpResponse(template.render(context, request))
