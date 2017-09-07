@@ -6,11 +6,11 @@ import gmplot
 import pyrebase
 
 config = {
-    "apiKey": "API KEY",
-    "authDomain": "PROJECT.firebaseapp.com",
-    "databaseURL": "https://PROJECT.firebaseio.com",
-    "storageBucket": "PROJECT.appspot.com",
-    "serviceAccount": os.path.join(os.path.dirname(os.path.realpath(__file__)), 'firebase', 'KEY.json')
+    "apiKey": "AIzaSyAuwjUrnZmJg3-iiREyfgcVCM3O47FKuLc",
+    "authDomain": "airbnb-36a85.firebaseapp.com",
+    "databaseURL": "https://airbnb-36a85.firebaseio.com",
+    "storageBucket": "airbnb-36a85.appspot.com",
+    "serviceAccount": os.path.join(os.path.dirname(os.path.realpath(__file__)), 'firebase', 'airbnb-36a85-firebase-adminsdk-2v4vn-c034499121.json')
 }
 
 #TODO: Pull city information from firebase
@@ -29,7 +29,7 @@ def plot_heatmap(city_name, weight_on):
         firebase = pyrebase.initialize_app(config)
         auth = firebase.auth()
         #authenticate a user
-        user = auth.sign_in_with_email_and_password("EMAIL", "PASSWORD")
+        user = auth.sign_in_with_email_and_password("jackandherson@gmail.com", "firebasepassword")
         db = firebase.database()
         data = db.child('listing').order_by_child("city").equal_to(city_name).get(user['idToken'])
 
@@ -42,13 +42,15 @@ def plot_heatmap(city_name, weight_on):
         for entry in data:
             lats.append(float(entry[1]['latitude']))
             longs.append(float(entry[1]['longitude']))
-            weights.append(float(entry[1]['price']))
+            if(weight_on != None):
+                weights.append(float(entry[1][weight_on]))
+            else:
+                weights.append(1.0)
 
         #lats = data['latitude']
         #longs = data['longitude']
         #weights = data[weight_on]
 
-        gmap = gmplot.GoogleMapPlotter(lats[0], longs[0], 16)
         gmap = gmplot.GoogleMapPlotter.from_geocode(city_name)
         gmap.heatmap_weight(lats, longs, weights)
 

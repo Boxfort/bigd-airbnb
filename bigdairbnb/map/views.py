@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.template import loader
 from django.http import HttpResponse
 import urllib
@@ -15,9 +16,9 @@ def index(request):
     return HttpResponse("<h1>Map index page</h1>")
 
 #TODO: Check if filename of city exists, if not then call the plotter to make the file.
-def city(request, city_name):
+def city_weight(request, city_name, weight_on):
     template = loader.get_template('map/map.html')
-    filepath = plotter.plot_heatmap(city_name, "price")
+    filepath = plotter.plot_heatmap(city_name, request.POST.get("weight"))
     error = None
     map_file = ""
     if filepath == None:
@@ -32,3 +33,12 @@ def city(request, city_name):
         'error': error
     }
     return HttpResponse(template.render(context, request))
+
+def city(request, city_name):
+    return city_weight(request, city_name, None)
+
+
+def city_post(request):
+    city = request.POST.get("city")
+    weight = request.POST.get("weight")
+    return redirect('/map/' + city + '/' + weight)

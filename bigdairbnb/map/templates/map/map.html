@@ -17,15 +17,23 @@
 	<body onload='initialize()'>
 		{% include 'map/navbar.html' %}
 		<div class="container main-contain">
-			<h1 class="blog-title">Map Screen FAM</h1>
-			<h1>This the map page yo.</h2>
-			<h2>{{city_name}}</h2>
-		{% if error != None %}
-			{{error |safe}}
-		{% else %}
-			<div id="map_canvas" style="width: 100%; height: 100%;"></div>
-		{% endif %}
-		</div>
+			<h1>Heatmap - Price</h1>
+			<h3>{{city_name}}</h3>
+			<hr/>
+			<div class="row">
+				<div class="col-sm-8">
+				{% if error != None %}
+					{{error |safe}}
+				{% else %}
+					<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+				{% endif %}
+				</div>
+				<div class="col-sm-4">
+					<h3>Options</h3>
+					<hr/>
+					{% include 'map/optionform.html' %}
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
