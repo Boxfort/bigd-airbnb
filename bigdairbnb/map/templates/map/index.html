@@ -1,3 +1,18 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+#LOAD STATIC FOLDER ///https://docs.djangoproject.com/en/1.11/howto/static-files/
 <h2>Madre miaaa!!</h2>
 <p>Se calienta la atmosfera</p>
 <p>{{ thing_2 }}</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>Bacon ipsum dolor amet hamburger sirloin pork belly short loin turkey, kevin picanha jowl pork loin leberkas. Spare ribs cow strip steak tail bacon, pork belly corned beef chicken pancetta fatback. Short loin brisket drumstick meatloaf bacon corned beef doner meatball. Cow meatball burgdoggen filet mignon capicola tenderloin tongue. Tenderloin ham brisket andouille meatball kevin pancetta doner. Pork chop brisket pork kevin strip steak bresaola t-bone hamburger venison.</p>
+      {% bootstrap_button "Heh" button_type='link' button_class='btn-warning' href="http://www.reddit.com" %}
+    </div>
+  </div>
+</div>
+

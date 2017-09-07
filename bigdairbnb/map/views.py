@@ -22,10 +22,8 @@ def index(request):
 def city(request, city_name):
     template = loader.get_template('map/map.html')
     map_file = urllib.request.urlopen('file://' + os.path.join(os.path.dirname(os.path.realpath(__file__)), "test.html")).read()
-    print("hehehehe")
     context = {
         'city_name': city_name,
         'map_file': map_file,
-        'thing_3' : 'okay',
     }
     return HttpResponse(template.render(context, request))
