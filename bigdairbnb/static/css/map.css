@@ -1,3 +1,10 @@
 .main-contain{
 	margin-top: 50px;
 }
+
+.footie{
+	height: 60px;
+	font-size: 16px;
+	text-align: center;
+	padding-top: 10px;
+}

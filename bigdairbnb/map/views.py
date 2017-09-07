@@ -13,12 +13,38 @@ import plotter
 # Create your views here.
 
 def index(request):
-    return HttpResponse("<h1>Map index page</h1>")
+    template = loader.get_template('map/map.html')
+    error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+    city_name = "Select a city!"
+    context = {
+        'city_name': city_name,
+        'error':error
+    }
+    return HttpResponse(template.render(context, request))
 
 #TODO: Check if filename of city exists, if not then call the plotter to make the file.
-def city_weight(request, city_name, weight_on):
+def city_heatmap(request, city_name, weight_on):
     template = loader.get_template('map/map.html')
-    filepath = plotter.plot_heatmap(city_name, request.POST.get("weight"))
+    filepath = plotter.plot_heatmap(city_name, weight_on)
+    error = None
+    map_file = ""
+    if filepath == None:
+        city_name = "Something went wrong!"
+        error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+    else:
+        map_file = urllib.urlopen(filepath).read()
+
+    context = {
+        'city_name': city_name,
+        'map_file': map_file,
+        'weight_on': weight_on,
+        'error': error
+    }
+    return HttpResponse(template.render(context, request))
+
+def city_pins(request, city_name):
+    template = loader.get_template('map/map.html')
+    filepath = plotter.plot_pins(city_name)
     error = None
     map_file = ""
     if filepath == None:
@@ -34,11 +60,15 @@ def city_weight(request, city_name, weight_on):
     }
     return HttpResponse(template.render(context, request))
 
-def city(request, city_name):
-    return city_weight(request, city_name, None)
-
-
 def city_post(request):
+    #HANDLE MAP TYPES AND REDIRECT AS APROPRIATE
     city = request.POST.get("city")
     weight = request.POST.get("weight")
-    return redirect('/map/' + city + '/' + weight)
+    maptype = request.POST.get("type")
+    print "posting with values " + city + " and  " + weight 
+    if maptype == "heatmap":
+        return redirect('/map/'+ maptype + "/" + city + '/' + weight)
+    elif maptype == "pins":
+        return redirect('/map/'+ maptype + "/" + city + '/')
+    else:
+        return HttpResonse("I done fucked up")

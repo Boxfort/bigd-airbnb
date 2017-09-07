@@ -17,8 +17,8 @@
 	<body onload='initialize()'>
 		{% include 'map/navbar.html' %}
 		<div class="container main-contain">
-			<h1>Heatmap - Price</h1>
-			<h3>{{city_name}}</h3>
+			<h1>Map</h1>
+			<h3>{{city_name}} {% if weight_on != None  %} - {{weight_on}}{% endif %}</h3>
 			<hr/>
 			<div class="row">
 				<div class="col-sm-8">
@@ -35,6 +35,7 @@
 				</div>
 			</div>
 		</div>
+		{% include 'map/footer.html'%}
 	</body>
 </html>
 
