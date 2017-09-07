@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.template import loader
 from django.http import HttpResponse
-import urllib
+import urllib.request
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'scripts'))
@@ -14,7 +14,7 @@ import plotter
 
 def index(request):
     template = loader.get_template('map/map.html')
-    error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+    error = urllib.request.urlopen("file://" + os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
     city_name = "Select a city!"
     context = {
         'city_name': city_name,
@@ -30,9 +30,9 @@ def city_heatmap(request, city_name, weight_on):
     map_file = ""
     if filepath == None:
         city_name = "Something went wrong!"
-        error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+        error = urllib.request.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
     else:
-        map_file = urllib.urlopen(filepath).read()
+        map_file = urllib.request.urlopen(filepath).read()
 
     context = {
         'city_name': city_name,
@@ -49,9 +49,9 @@ def city_pins(request, city_name):
     map_file = ""
     if filepath == None:
         city_name = "Something went wrong!"
-        error = urllib.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
+        error = urllib.request.urlopen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'blankmap.html')).read()
     else:
-        map_file = urllib.urlopen(filepath).read()
+        map_file = urllib.request.urlopen(filepath).read()
 
     context = {
         'city_name': city_name,
@@ -65,7 +65,7 @@ def city_post(request):
     city = request.POST.get("city")
     weight = request.POST.get("weight")
     maptype = request.POST.get("type")
-    print "posting with values " + city + " and  " + weight 
+    print ("posting with values " + city + " and  " + weight)
     if maptype == "heatmap":
         return redirect('/map/'+ maptype + "/" + city + '/' + weight)
     elif maptype == "pins":
