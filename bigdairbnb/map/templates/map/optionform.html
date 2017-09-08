@@ -2,15 +2,17 @@
 	{% csrf_token %}
 	<div class='form-group'>
 		<label for="Type">Type</label>
-		<select class="form-control" id="type" name="type">
+		<select class="selectpicker" data-style="form-control" id="type" name="type">
+		<option disabled selected>Choose Type</option>
 			<option value='heatmap'>Heatmap</option>
 			<option value='pins'>Pins</option>
 		</select>
 	</div>
 	<div class='form-group'>
 		<label for="weight">Weight</label>
-		<select class="form-control" id="weight" name="weight">
-			<option value='price'>Price</option>
+		<select class="selectpicker" data-style="form-control" id="weight" name="weight">
+			<option disabled selected>Choose Weight</option>
+			<option value='price'><i class="ti-money"></i> Prices</option>
 			<option value='overall_satisfaction'>Overall Satisfaction</option>
 			<option value='reviews'>Reviews</option>
 			<option value='bedrooms'>Bedrooms</option>
@@ -23,74 +25,77 @@
 		<datalist id="cities">
 			<option value="Aarhus">
 			<option value="Brussel">
-			<option value='alst'> 
-			<option value='Aalst'> 
-			<option value='Aarhus'> 
-			<option value='ALPES-MARITIMES'> 
-			<option value='Amsterdam'> 
-			<option value='Anchorage'> 
-			<option value='Antwerpen'> 
-			<option value='Arlon'> 
-			<option value='Asheville'> 
-			<option value='Asturias'> 
-			<option value='Ath'> 
-			<option value='Auckland'> 
-			<option value='Barcelona'> 
-			<option value='Bastogne'> 
-			<option value='Berlin'> 
-			<option value='Bologna'> 
-			<option value='Bordeaux'> 
-			<option value='Boston'> 
-			<option value='Brighton'> 
-			<option value='Bristol'> 
-			<option value='Brno'> 
-			<option value='Brugge'> 
-			<option value='Brussel'> 
-			<option value='Busan'> 
-			<option value='Cabo Frio'> 
-			<option value='Calgary'> 
-			<option value='Cambridge MA'> 
-			<option value='Charleroi'> 
-			<option value='Charlottesville'> 
-			<option value='Chicago'> 
-			<option value='Christchurch'> 
-			<option value='Copenhagen'> 
-			<option value='Dendermonde'> 
-			<option value='Diksmuide'> 
-			<option value='Dinant'> 
-			<option value='Eeklo'> 
-			<option value='Gent'> 
-			<option value='Halle-Vilvoorde'> 
-			<option value='Hasselt'> 
-			<option value='Huy'> 
-			<option value='Ieper'> 
-			<option value='Kortrijk'> 
-			<option value='Leuven'> 
-			<option value='LiÃ¨ge'> 
-			<option value='Maaseik'> 
-			<option value='Marche-en-Famenne'> 
-			<option value='Mechelen'> 
-			<option value='Moeskroen'> 
-			<option value='Mons'> 
-			<option value='Namur'> 
-			<option value='NeufchÃ¢teau'> 
-			<option value='Nivelles'> 
-			<option value='Oostende'> 
-			<option value='Oudenaarde'> 
-			<option value='Philippeville'> 
-			<option value='Roeselare'> 
-			<option value='Sint-Niklaas'> 
-			<option value='Soignies'> 
-			<option value='Thuin'> 
-			<option value='Tielt'> 
-			<option value='Tongeren'> 
-			<option value='Tournai'> 
-			<option value='Turnhout'> 
-			<option value='Verviers'> 
-			<option value='Veurne'> 
-			<option value='Virton'> 
+			<option value='alst'>
+			<option value='Aalst'>
+			<option value='Aarhus'>
+			<option value='ALPES-MARITIMES'>
+			<option value='Amsterdam'>
+			<option value='Anchorage'>
+			<option value='Antwerpen'>
+			<option value='Arlon'>
+			<option value='Asheville'>
+			<option value='Asturias'>
+			<option value='Ath'>
+			<option value='Auckland'>
+			<option value='Barcelona'>
+			<option value='Bastogne'>
+			<option value='Berlin'>
+			<option value='Bologna'>
+			<option value='Bordeaux'>
+			<option value='Boston'>
+			<option value='Brighton'>
+			<option value='Bristol'>
+			<option value='Brno'>
+			<option value='Brugge'>
+			<option value='Brussel'>
+			<option value='Busan'>
+			<option value='Cabo Frio'>
+			<option value='Calgary'>
+			<option value='Cambridge MA'>
+			<option value='Charleroi'>
+			<option value='Charlottesville'>
+			<option value='Chicago'>
+			<option value='Christchurch'>
+			<option value='Copenhagen'>
+			<option value='Dendermonde'>
+			<option value='Diksmuide'>
+			<option value='Dinant'>
+			<option value='Eeklo'>
+			<option value='Gent'>
+			<option value='Halle-Vilvoorde'>
+			<option value='Hasselt'>
+			<option value='Huy'>
+			<option value='Ieper'>
+			<option value='Kortrijk'>
+			<option value='Leuven'>
+			<option value='LiÃ¨ge'>
+			<option value='Maaseik'>
+			<option value='Marche-en-Famenne'>
+			<option value='Mechelen'>
+			<option value='Moeskroen'>
+			<option value='Mons'>
+			<option value='Namur'>
+			<option value='NeufchÃ¢teau'>
+			<option value='Nivelles'>
+			<option value='Oostende'>
+			<option value='Oudenaarde'>
+			<option value='Philippeville'>
+			<option value='Roeselare'>
+			<option value='Sint-Niklaas'>
+			<option value='Soignies'>
+			<option value='Thuin'>
+			<option value='Tielt'>
+			<option value='Tongeren'>
+			<option value='Tournai'>
+			<option value='Turnhout'>
+			<option value='Verviers'>
+			<option value='Veurne'>
+			<option value='Virton'>
 			<option value='Waremme'>
 		</datalist>
 	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<div class="wrapper text-center">
+	<br/>
+	<button type="submit" class="btn btn-default btn-fill"><i class="ti-location-pin"></i>  Go!</button>
+	</div>
 </form>

@@ -1,4 +1,4 @@
-import pandas as pd 
+import pandas as pd
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'gmplot'))
@@ -18,7 +18,7 @@ def plot_pins(city_name):
 
     #If a heatmap has already been generated return the filepath to it.
     if(os.path.exists(filepath)):
-       print "file exists"
+       print ("file exists")
        return filepath
 
     try:
@@ -48,8 +48,8 @@ def plot_pins(city_name):
 
         gmap.draw(os.path.join(os.path.dirname(os.path.realpath(__file__)), "maps", "pins_" + city_name + ".html"))
 
-    except Exception, e:
-        print str(e)
+    except (Exception, e):
+        print (str(e))
         return None
 
     return filepath
@@ -63,27 +63,27 @@ def plot_heatmap(city_name, weight_on):
 
     #If a heatmap has already been generated return the filepath to it.
     if(os.path.exists(filepath)):
-       print "file exists"
+       print ("file exists")
        return filepath
 
     try:
-        print "Attempting to plot"
+        print ("Attempting to plot")
         firebase = pyrebase.initialize_app(config)
         auth = firebase.auth()
         #authenticate a user
-        user = auth.sign_in_with_email_and_password("jackandherson@gmail.com", "firebasepassword")
+        user = auth.sign_in_with_email_and_password("carlos@example.com", "kinkin22")
         db = firebase.database()
-        print "Fetching"
+        print ("Fetching")
         data = db.child('listing').order_by_child("city").equal_to(str(city_name)).get(user['idToken'])
-        print "Got data"
+        print ("Got data")
         
         data = list(data.val().items())
-        print "created list"
+        print ("created list")
         lats = []
         longs = []
         weights = []
         
-        print data[0]
+        print (data[0])
         for entry in data:
             lats.append(float(entry[1]['latitude']))
             longs.append(float(entry[1]['longitude']))
@@ -92,7 +92,7 @@ def plot_heatmap(city_name, weight_on):
             else:
                 weights.append(1.0)
 
-        print "created lats"
+        print ("created lats")
 
         #lats = data['latitude']
         #longs = data['longitude']
@@ -103,8 +103,8 @@ def plot_heatmap(city_name, weight_on):
 
         gmap.draw(os.path.join(os.path.dirname(os.path.realpath(__file__)), "maps", "heatmap_" + city_name + "_" + weight_on + ".html"))
 
-    except Exception, e:
-        print str(e)
+    except (Exception, e):
+        print (str(e))
         return None
 
     return filepath
