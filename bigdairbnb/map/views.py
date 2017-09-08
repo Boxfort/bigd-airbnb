@@ -71,4 +71,4 @@ def city_post(request):
     elif maptype == "pins":
         return redirect('/map/'+ maptype + "/" + city + '/')
     else:
-        return HttpResonse("I done fucked up")
+        return HttpResonse("Something has went horribly wrong, you should never see this error.")

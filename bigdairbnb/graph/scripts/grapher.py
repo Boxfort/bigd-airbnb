@@ -52,7 +52,9 @@ def graph(city1, city2, field):
                 y=[value1,value2]
             )]
 
-        return pyo.plot(bar_data, include_plotlyjs=False, output_type='div')
+        htmlfile = open(filepath, "w")
+        htmlfile.write(pyo.plot(bar_data, include_plotlyjs=False, output_type='div'))
+        htmlfile.close()
 
     except Exception, e:
         print str(e)
