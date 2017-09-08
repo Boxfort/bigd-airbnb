@@ -29,18 +29,49 @@
 	<body onload='initialize()'>
 		{% include 'graph/navbar.html' %}
 		<div class="container main-contain">
-			<h1>Graph</h1>
-			<h3>{% if field != None %}{{city1}} - {{city2}} - Average {{field}}{% endif %}</h3>
+			<h1 class="text-center"><small><i class="ti-bar-chart"></i></small> Graph</h1>
 			<hr/>
 			<div class="row">
-				<div class="col-sm-8">
+
+				<div class="col-xs-12 col-md-8">
+	        <div class="card card-with-shadow map-card">
+	            <div class="content">
+                <h6 class="category">{{city_name}} {% if weight_on != None  %} - {{weight_on}}{% endif %}</h6>
+                <h4 class="title">{% if field != None %}{{city1}} - {{city2}} - Average {{field}}{% endif %}</h4>
 					{{graph_html |safe}}
-				</div>
-				<div class="col-sm-4">
-					<h3>Options</h3>
-					<hr/>
+	            </div>
+	        </div> <!-- end card -->
+        </div>
+
+				<div class="col-md-4 hidden-xs hidden-sm">
+					<div class="card card-with-shadow">
+						<div class="content">
+							<h6 class="category">Settings</h6>
+							<hr>
+
 					{% include 'graph/optionform.html' %}
+
+
+						</div>
+					</div>
 				</div>
+
+				<div class="col-xs-12 visible-xs visible-sm">
+					<div class="card card-with-shadow">
+						<div class="content">
+							<h6 class="category">Settings</h6>
+							<hr>
+
+					{% include 'graph/optionform.html' %}
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
 			</div>
 		</div>
 		{% include 'map/footer.html'%}
