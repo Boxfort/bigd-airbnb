@@ -5,37 +5,80 @@
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		{% load static %}
+		<script src="{% static 'js/jquery-ui-1.10.4.custom.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+		<script src="{% static 'js/bootstrap-select.js' %}"></script>
+		<script src="{% static 'js/ct-paper-bootstrapswitch.js' %}"></script>
+		<script src="{% static 'js/ct-paper.js' %}"></script>
+		<script src="{% static 'js/ct-paper-checkbox.js' %}"></script>
+		<script src="{% static 'js/ct-paper-radio.js' %}"></script>
+		<script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+
+		<link rel="stylesheet" href="{% static 'css/app.css' %}">
 		<link rel="stylesheet" href="{% static 'css/map.css' %}">
+		<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
 		{{ map_file |safe}}
 	</head>
 	<body onload='initialize()'>
 		{% include 'map/navbar.html' %}
 		<div class="container main-contain">
 			<h1>Map</h1>
-			<h3>{{city_name}} {% if weight_on != None  %} - {{weight_on}}{% endif %}</h3>
+			<h3></h3>
 			<hr/>
 			<div class="row">
-				<div class="col-sm-8">
-				{% if error != None %}
-					{{error |safe}}
-				{% else %}
-					<div id="map_canvas" style="width: 100%; height: 100%;"></div>
-				{% endif %}
-				</div>
-				<div class="col-sm-4">
-					<h3>Options</h3>
-					<hr/>
+
+				<div class="col-xs-12 col-md-8">
+	        <div class="card card-with-shadow map-card">
+	            <div class="content">
+                <h6 class="category">{{city_name}} {% if weight_on != None  %} - {{weight_on}}{% endif %}</h6>
+                <h4 class="title"></h4>
+								{% if error != None %}
+									{{error |safe}}
+								{% else %}
+									<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+								{% endif %}
+	            </div>
+	        </div> <!-- end card -->
+        </div>
+				<div class="col-md-4 hidden-xs hidden-sm">
+					<div class="card card-with-shadow">
+						<div class="content">
+							<h6 class="category">Settings</h6>
+							<hr>
+
 					{% include 'map/optionform.html' %}
+
+
+						</div>
+					</div>
 				</div>
+
+				<div class="col-xs-12 visible-xs">
+					<div class="card card-with-shadow">
+						<div class="content">
+							<h6 class="category">Settings</h6>
+							<hr>
+
+					{% include 'map/optionform.html' %}
+
+
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 		{% include 'map/footer.html'%}
+		<div class="collapse navbar-collapse" id="navigation-example-2"><ul class="nav navbar-nav">
+            <a href="/map" class="">Map</a>
+          </li>
+          <li>
+            <a href="/graph" target="_blank" class="">Graphs</a>
+          </li>
+       </ul></div>
 	</body>
 </html>
 

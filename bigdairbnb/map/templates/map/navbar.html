@@ -1,19 +1,34 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-	  <a class="navbar-brand" href="#">BigD - AirBnB</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-		  <li class="active"><a href="/map">Map</a></li>
-	    <li><a href="/graph">Graph</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+<nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+           <div class="logo-container">
+                <div class="logo text-center">
+                    <img src="/static/img/travel.svg" style="width:20%;padding:15px 0" class="visible-xs" alt="Team Anything">
+
+                    <img src="/static/img/travel.svg" style="width:50%;padding:15px 0" class="hidden-xs" alt="Team Anything">
+                </div>
+                <div class="brand">
+                </div>
+            </div>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse collapse in" id="navigation-example-2" aria-expanded="true" style="">
+      <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/map" class="btn btn-danger btn-fill btn-rotate"><i class="ti-location-pin"></i> Map</a>
+          </li>
+          <li>
+            <a href="/graph" target="_blank" class="btn btn-danger btn-fill"><i class="ti-bar-chart"></i> Graph</a>
+          </li>
+       </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-->
+</nav>
